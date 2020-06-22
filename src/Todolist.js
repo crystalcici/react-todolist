@@ -47,6 +47,7 @@ class Todolist extends Component {
     handleItemDelete(index) {
         const list = [...this.state.list];
         list.splice(index,1);
+
         this.setState({
             list: list
         })
