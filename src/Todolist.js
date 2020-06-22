@@ -1,6 +1,7 @@
 import React from "react";
 import {Component} from "react";
-import {Fragment} from "react"
+import {Fragment} from "react";
+import './style.css'
 class Todolist extends Component {
     constructor(props) {
         super(props);
@@ -13,7 +14,10 @@ class Todolist extends Component {
         return (
             <Fragment>
                 <div>
+                    <label htmlFor='insertArea'>输入内容</label>
                     <input
+                        id='insertArea'
+                        className='input'
                         value={this.state.inputValue}
                         onChange={this.handleInputChange.bind(this)}
                     />
@@ -25,8 +29,8 @@ class Todolist extends Component {
                         return <li
                                 key={index}
                                 onClick={this.handleItemDelete.bind(this, index)}
-                                >{item}
-                                </li>
+                                dangerouslySetInnerHTML={{__html: item}}
+                                ></li>
                         })
                 }
             </ul>
