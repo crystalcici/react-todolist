@@ -1,6 +1,7 @@
 import React from "react";
 import {Component} from "react";
 import {Fragment} from "react";
+import TodoItem from "./TodoItem";
 import './style.css'
 class Todolist extends Component {
     constructor(props) {
@@ -26,12 +27,21 @@ class Todolist extends Component {
             <ul>
                 {
                     this.state.list.map((item,index) => {
-                        return <li
+                        return (
+                            <div>
+                                <TodoItem
+                                    content={item}
+                                    index={index}
+                                    deleteItem = {this.handleItemDelete.bind(this)}
+                                />
+                                {/*<li
                                 key={index}
                                 onClick={this.handleItemDelete.bind(this, index)}
                                 dangerouslySetInnerHTML={{__html: item}}
-                                ></li>
-                        })
+                                ></li>*/}
+                            </div>
+                        )
+                    })
                 }
             </ul>
             </Fragment>
