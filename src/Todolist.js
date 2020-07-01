@@ -10,6 +10,9 @@ class Todolist extends Component {
             inputValue: '',
             list: ['学英语']
         }
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleBtnClick = this.handleBtnClick.bind(this);
+        this.handleItemDelete = this.handleItemDelete.bind(this)
     }
     render() {
         return (
@@ -20,37 +23,33 @@ class Todolist extends Component {
                         id='insertArea'
                         className='input'
                         value={this.state.inputValue}
-                        onChange={this.handleInputChange.bind(this)}
+                        onChange={this.handleInputChange}
                     />
-                <button onClick={this.handleBtnClick.bind(this)}>提交</button>
+                <button onClick={this.handleBtnClick}>提交</button>
                 </div>
-            <ul>
-                {
-                    this.state.list.map((item,index) => {
-                        return (
-                            <div>
-                                <TodoItem
-                                    content={item}
-                                    index={index}
-                                    deleteItem = {this.handleItemDelete.bind(this)}
-                                />
-                                {/*<li
-                                key={index}
-                                onClick={this.handleItemDelete.bind(this, index)}
-                                dangerouslySetInnerHTML={{__html: item}}
-                                ></li>*/}
-                            </div>
-                        )
-                    })
-                }
-            </ul>
+                <ul>
+                    {
+                        this.state.list.map((item,index) => {
+                            return (
+                                <div>
+                                    <TodoItem
+                                        content={item}
+                                        index={index}
+                                        deleteItem = {this.handleItemDelete}
+                                    />
+                                </div>
+                            )
+                        })
+                    }
+                </ul>
             </Fragment>
         )
     }
     handleInputChange(e) {
-        this.setState({
-            inputValue: e.target.value
-        })
+        const value = e.target.value
+        this.setState(() => ({
+            inputValue: value
+        }))
     }
     handleBtnClick() {
         this.setState({
